@@ -21,7 +21,7 @@ jobs:
       run: docker compose ps
       
     - name: check http response
-      run:  http=$(echo $(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000))
+      run:  echo $(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000)
       
     - name: check http response
  #     if: GitHub.event_name != 'pull_request'
@@ -38,7 +38,7 @@ jobs:
       run:  docker build -t saiprakash07/flask:latest .
       
     - name: docker image push
-      if:  $http == '200'
+#      if:  $http == '200'
       run:  docker push saiprakash07/flask:latest
       
       
