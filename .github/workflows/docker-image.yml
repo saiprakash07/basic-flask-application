@@ -19,3 +19,7 @@ jobs:
    
     - name: Build the Docker compose ps
       run: docker compose ps
+      
+    - name: check http response
+      run:  curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000      
+      
