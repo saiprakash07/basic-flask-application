@@ -23,7 +23,7 @@ jobs:
     - name: check http response
       run:  echo $(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000)
       
-    - name: check http response
+    - name: Docker Response
  #     if: GitHub.event_name != 'pull_request'
       uses: docker/login-action@v1
       with:
