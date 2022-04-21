@@ -39,7 +39,7 @@ jobs:
       
     - name: docker image push
    #   if:  $(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000) -eq 200
-      run:  docker push
+      run:  docker push saiprakash07/flask:latest
       
       
      
