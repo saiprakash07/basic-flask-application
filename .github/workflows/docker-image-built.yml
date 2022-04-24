@@ -46,6 +46,7 @@ jobs:
       
     - name: dhfh
       run: |
+             echo $( curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000 )
              http_code=$(echo $( curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000 ))
              echo ${http_code}
       
