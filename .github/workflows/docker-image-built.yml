@@ -23,15 +23,14 @@ jobs:
     - name: Build the Docker compose ps
       run: docker compose ps
       
-    - name: check http response
-      run:  echo $(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000)
+#     - name: check http response
+#       run:  echo $(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000)
       
-#     - name: Docker Response
-#  #     if: GitHub.event_name != 'pull_request'
-#       uses: docker/login-action@v1
-#       with:
-#          username: ${{ secrets.DOCKERHUB_USERNAME }}
-#          password: ${{ secrets.DOCKERHUB_TOKEN }}  
+    - name: Docker Response
+      uses: docker/login-action@v1
+      with:
+         username: ${{ secrets.DOCKERHUB_USERNAME }}
+         password: ${{ secrets.DOCKERHUB_TOKEN }}  
          
 # #     - name: Build and push
 # #      # if:  $(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000) == '200'
@@ -44,19 +43,18 @@ jobs:
 # #      if:  $http == '200'
 #       run:  docker push saiprakash07/flask:${{ env.git_run_number }} 
       
-    - name: dhfh
-      run: |
-             echo $( curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000 )
-             http_code=$(echo $( curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000 ))
-             echo ${http_code}
+    - name: wait for webserver to be up
+      run: sleep 15
       
-    - name: sdsd
+    - name: Check HTTP status and push to dockerhub
       run: |
              if [  $(echo $( curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000 )) -eq '200' ]
              then
-               echo "hello"   
+               echo "hello" 
+               docker build -t saiprakash07/flask:${{ env.git_run_number }} .
+               docker push saiprakash07/flask:${{ env.git_run_number }} 
                
              else
-               echo "not hello"
+               echo "HTTP response not 200"
              fi ;
      
