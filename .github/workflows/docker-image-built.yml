@@ -51,7 +51,7 @@ jobs:
       
     - name: sdsd
       run: |
-             if $(echo $( curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000 )) = 200 
+             if $(echo $( curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000 )) = 200 ;
              then
                echo ${http_code}
      
