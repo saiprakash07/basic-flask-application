@@ -53,6 +53,9 @@ jobs:
       run: |
              if [  $(echo $( curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000 )) -eq '200' ]
              then
-               echo "hello"             
-             fi
+               echo "hello"   
+               
+             else
+               echo "not hello"
+             fi ;
      
