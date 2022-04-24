@@ -20,11 +20,11 @@ jobs:
     - name: Build the Docker compose up
       run: docker compose up -d 
    
-#     - name: Build the Docker compose ps
-#       run: docker compose ps
+    - name: Build the Docker compose ps
+      run: docker compose ps
       
-#     - name: check http response
-#       run:  echo $(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000)
+    - name: check http response
+      run:  echo $(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000)
       
 #     - name: Docker Response
 #  #     if: GitHub.event_name != 'pull_request'
