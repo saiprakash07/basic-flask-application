@@ -1,3 +1,6 @@
+env:
+  git_run_number: ${GITHUB_RUN_NUMBER}
+
 name: Docker Image CI
 
 on:
@@ -30,17 +33,21 @@ jobs:
          username: ${{ secrets.DOCKERHUB_USERNAME }}
          password: ${{ secrets.DOCKERHUB_TOKEN }}  
          
-#     - name: Build and push
-#      # if:  $(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000) == '200'
-#       uses: docker/build-push-action@v2.10.0
+# #     - name: Build and push
+# #      # if:  $(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000) == '200'
+# #       uses: docker/build-push-action@v2.10.0
    
-    - name: docker build
-      run:  docker build -t saiprakash07/flask:${{ GITHUB_RUN_ID }} .
+#     - name: docker build
+#       run:  docker build -t saiprakash07/flask:${{ env.git_run_number }} .
       
-    - name: docker image push
-#      if:  $http == '200'
-      run:  docker push saiprakash07/flask:${{ GITHUB_RUN_ID }} 
+#     - name: docker image push
+# #      if:  $http == '200'
+#       run:  docker push saiprakash07/flask:${{ env.git_run_number }} 
       
+    - name: dhfh
+      run: |
+             $http_code= echo $(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000) == '200'
+             echo $http_code
       
      
      
