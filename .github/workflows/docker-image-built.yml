@@ -49,5 +49,7 @@ jobs:
              http_code=$(echo $( curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000 ))
              echo ${http_code}
       
-     
+    - name: sdsd
+      if:  ${http_code} -eq 200 
+      run: echo "Hello Worlds"
      
